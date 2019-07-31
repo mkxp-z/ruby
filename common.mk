@@ -51,6 +51,7 @@ OBJS	      = array.$(OBJEXT) \
 		ruby.$(OBJEXT) \
 		signal.$(OBJEXT) \
 		sprintf.$(OBJEXT) \
+		zlib.$(OBJEXT) \
 		st.$(OBJEXT) \
 		string.$(OBJEXT) \
 		struct.$(OBJEXT) \

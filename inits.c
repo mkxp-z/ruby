@@ -42,6 +42,7 @@ void Init_RandomSeed _((void));
 void Init_Range _((void));
 void Init_Regexp _((void));
 void Init_signal _((void));
+void Init_zlib _((void));
 void Init_String _((void));
 void Init_Struct _((void));
 void Init_Time _((void));
@@ -78,6 +79,7 @@ rb_call_inits()
     Init_Time();
     Init_Random();
     Init_signal();
+    Init_zlib();
     Init_process();
     Init_load();
     Init_Proc();
