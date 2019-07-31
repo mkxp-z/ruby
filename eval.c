@@ -4076,8 +4076,11 @@ rb_eval(self, n)
 		if (super) {
 		    tmp = rb_class_real(RCLASS(klass)->super);
 		    if (tmp != super) {
-			rb_raise(rb_eTypeError, "superclass mismatch for class %s",
-				 rb_id2name(cname));
+			//rb_raise(rb_eTypeError, "superclass mismatch for class %s",
+			//	 rb_id2name(cname));
+
+			// Reverting this to its 1.8.1 state for compatibility
+			goto override_class;
 		    }
 		    super = 0;
 		}
@@ -4086,6 +4089,7 @@ rb_eval(self, n)
 		}
 	    }
 	    else {
+			override_class:
 		if (!super) super = rb_cObject;
 		klass = rb_define_class_id(cname, super);
 		rb_set_class_path(klass, cbase, rb_id2name(cname));
