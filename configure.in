@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_INIT()
-
 AC_PREREQ(2.60)
+CFLAGS="$CFLAGS -g -O2 -w"
 
 AC_DEFUN([RUBY_MINGW32],
 [case "$host_os" in
@@ -1670,6 +1670,8 @@ case "$target_os" in
 	    fi
 	    ;;
 	mingw*)
+		# MinGW generates garbage code and will cause segfaults if optimized
+		CFLAGS="`echo $CFLAGS | sed 's/-O2/-O0/'`"
 	    RUBY_SO_NAME=${rb_cv_msvcrt}-'$(RUBY_INSTALL_NAME)'${MAJOR}${MINOR}
 	    if test x"$enable_shared" = xyes; then
 		LIBRUBY_SO='$(RUBY_SO_NAME)'.dll
