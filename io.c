@@ -12,6 +12,13 @@
 
 **********************************************************************/
 
+// If optimized, MinGW will generate broken code here
+// and cause io_read to fail if called without a set length
+#ifdef __MINGW32__
+#pragma GCC push_options
+#pragma GCC optimize "O0"
+#endif
+
 #if defined(__VMS)
 #define _XOPEN_SOURCE
 #define _POSIX_C_SOURCE 2
@@ -6164,3 +6171,7 @@ Init_IO()
     rb_file_const("SYNC", INT2FIX(O_SYNC));
 #endif
 }
+
+#ifdef __MINGW32__
+#pragma GCC pop_options
+#endif

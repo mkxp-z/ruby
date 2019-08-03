@@ -1670,8 +1670,6 @@ case "$target_os" in
 	    fi
 	    ;;
 	mingw*)
-		# MinGW generates garbage code and will cause segfaults if optimized
-		CFLAGS="`echo $CFLAGS | sed 's/-O2/-O0/'`"
 	    RUBY_SO_NAME=${rb_cv_msvcrt}-'$(RUBY_INSTALL_NAME)'${MAJOR}${MINOR}
 	    if test x"$enable_shared" = xyes; then
 		LIBRUBY_SO='$(RUBY_SO_NAME)'.dll
