@@ -355,8 +355,17 @@ install?(:local, :arch, :lib) do
   for f in Dir["*.h"]
     install f, archlibdir, :mode => $data_mode
   end
+  
+  if RUBY_PLATFORM =~ /mingw/
+	definesh = File.join(archlibdir, "defines.h")
+	File.open("./defines.h", 'r'){|i|
+	  File.open(definesh, 'w'){|o|
+		o.write(i.read().sub('"win32/win32.h"',"<windows.h>"))
+	  }
+	}
+  end
 
-  if RUBY_PLATFORM =~ /mswin32|mingw|bccwin32/
+  if RUBY_PLATFORM =~ /mswin32|bccwin32/
     win32libdir = File.join(archlibdir, "win32")
     makedirs win32libdir
     install "win32/win32.h", win32libdir, :mode => $data_mode
