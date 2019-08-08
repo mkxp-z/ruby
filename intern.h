@@ -20,7 +20,7 @@
 #define ID_ALLOCATOR 1
 
 /* array.c */
-void rb_mem_clear _((register VALUE*, register long));
+void rb_mem_clear _((VALUE*, long));
 VALUE rb_assoc_new _((VALUE, VALUE));
 VALUE rb_check_array_type _((VALUE));
 VALUE rb_ary_new _((void));
