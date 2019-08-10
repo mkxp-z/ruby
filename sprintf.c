@@ -807,6 +807,7 @@ rb_str_format(argc, argv, fmt)
     }
 
   sprint_exit:
+#if 0 // 1.8.1 compatibility
     /* XXX - We cannot validiate the number of arguments if (digit)$ style used.
      */
     if (posarg >= 0 && nextarg < argc) {
@@ -814,6 +815,7 @@ rb_str_format(argc, argv, fmt)
 	if (RTEST(ruby_debug)) rb_raise(rb_eArgError, mesg);
 	if (RTEST(ruby_verbose)) rb_warn(mesg);
     }
+#endif
     rb_str_resize(result, blen);
 
     if (tainted) OBJ_TAINT(result);
