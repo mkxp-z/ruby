@@ -1487,9 +1487,9 @@ AC_SUBST(RUNRUBY)
 AC_SUBST(EXTOUT, [${EXTOUT-.ext}])
 
 FIRSTMAKEFILE=""
-LIBRUBY_A='lib$(RUBY_SO_NAME)-static.a'
+LIBRUBY_A='lib$(RUBY_SO_NAME).a'
 LIBRUBY='$(LIBRUBY_A)'
-LIBRUBYARG_STATIC='-l$(RUBY_SO_NAME)-static'
+LIBRUBYARG_STATIC='-l$(RUBY_SO_NAME)'
 LIBRUBYARG='$(LIBRUBYARG_STATIC)'
 SOLIBS=
 
@@ -1881,4 +1881,26 @@ AC_CONFIG_FILES(Makefile, [{
 	sed ['s/{\$([^(){}]*)[^{}]*}//g'] ${srcdir}/common.mk
       } >> confmk$$.tmp && mv -f confmk$$.tmp Makefile],
 [RUBY_INSTALL_NAME=$RUBY_INSTALL_NAME EXEEXT=$EXEEXT])
+
+AC_ARG_WITH([ruby-pc],
+        AC_HELP_STRING([--with-ruby-pc=FILENAME], [pc file basename]),
+        [ruby_pc="$withval"],
+        [ruby_pc="${RUBY_INSTALL_NAME}-${MAJOR}.${MINOR}.pc"])
+AC_SUBST(ruby_pc)
+
+AC_CONFIG_FILES($ruby_pc:ruby.pc.in,
+[
+AS_IF([sed ['s/\$(\([A-Za-z_][A-Za-z0-9_]*\))/${\1}/g;s/@[A-Za-z_][A-Za-z0-9_]*@//'] $ruby_pc > ruby.tmp.pc &&
+{
+    test -z "$PKG_CONFIG" ||
+    PKG_CONFIG_PATH=. $PKG_CONFIG --print-errors ruby.tmp
+}],
+[
+mv -f ruby.tmp.pc ruby.pc
+], [
+exit 1
+])
+],
+[ruby_pc='$ruby_pc' PKG_CONFIG='$PKG_CONFIG'])
+
 AC_OUTPUT

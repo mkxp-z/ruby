@@ -209,6 +209,7 @@ rubyw_install_name = CONFIG["rubyw_install_name"]
 version = CONFIG["ruby_version"]
 bindir = CONFIG["bindir"]
 libdir = CONFIG["libdir"]
+pkgconfigdir = File.join(libdir, "pkgconfig")
 rubylibdir = CONFIG["rubylibdir"]
 archlibdir = CONFIG["archdir"]
 sitelibdir = CONFIG["sitelibdir"]
@@ -276,6 +277,15 @@ install?(:rdoc) do
     Config.expand(ridatadir)
     makedirs [ridatadir]
     install_recursive($rdocdir, ridatadir, :mode => $data_mode)
+  end
+end
+
+install?(:local, :data) do
+  pc = CONFIG['ruby_pc']
+  if pc and File.file?(pc) and File.size?(pc)
+    puts "installing pkgconfig data"
+    makedirs [pkgconfigdir]
+    install pc, File.join(pkgconfigdir, pc), :mode => $data_mode
   end
 end
 
