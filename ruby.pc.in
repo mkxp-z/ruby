@@ -9,7 +9,7 @@ MAJOR=@MAJOR@
 MINOR=@MINOR@
 TEENY=@TEENY@
 RUBY_INSTALL_NAME=@RUBY_INSTALL_NAME@
-LIBRUBY_SO_NAME=@RUBY_INSTALL_NAME@
+LIBRUBY_SO_NAME=@RUBY_SO_NAME@
 LIBS=@LIBS@
 ruby=${bindir}/${RUBY_INSTALL_NAME}@EXEEXT@
 
@@ -18,5 +18,5 @@ Description: Object Oriented Script Language
 Version: @MAJOR@.@MINOR@.@TEENY@
 URL: http://www.ruby-lang.org
 Cflags: -I${includedir}
-Libs: -L${libdir} ${LIBS} -l${RUBY_INSTALL_NAME}
+Libs: -L${libdir} ${LIBS} -l${LIBRUBY_SO_NAME}
 Requires:
