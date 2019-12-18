@@ -1670,7 +1670,7 @@ case "$target_os" in
 	    fi
 	    ;;
 	mingw*)
-	    RUBY_SO_NAME=${rb_cv_msvcrt}-'$(RUBY_INSTALL_NAME)'${MAJOR}${MINOR}
+	    RUBY_SO_NAME=ruby
 	    if test x"$enable_shared" = xyes; then
 		LIBRUBY_SO='$(RUBY_SO_NAME)'.dll
 		LIBRUBY='lib$(LIBRUBY_SO).a'
