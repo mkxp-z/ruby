@@ -1502,7 +1502,7 @@ case "$target_os" in
     ;;
 esac
 
-RUBY_SO_NAME='$(RUBY_INSTALL_NAME)'
+RUBY_SO_NAME=ruby
 LIBRUBY_LDSHARED=$LDSHARED
 LIBRUBY_DLDFLAGS=$DLDFLAGS
 LIBRUBY_SO='lib$(RUBY_SO_NAME).so.$(MAJOR).$(MINOR).$(TEENY)'
@@ -1670,7 +1670,7 @@ case "$target_os" in
 	    fi
 	    ;;
 	mingw*)
-	    RUBY_SO_NAME=ruby
+	    RUBY_SO_NAME=ruby${MAJOR}${MINOR}
 	    if test x"$enable_shared" = xyes; then
 		LIBRUBY_SO='$(RUBY_SO_NAME)'.dll
 		LIBRUBY='lib$(LIBRUBY_SO).a'

@@ -9,11 +9,12 @@ MAJOR=@MAJOR@
 MINOR=@MINOR@
 TEENY=@TEENY@
 LIBS=@LIBS@
+RUBY_SO_NAME=@RUBY_SO_NAME@
 
 Name: Ruby
 Description: Object Oriented Script Language
 Version: @MAJOR@.@MINOR@.@TEENY@
 URL: http://www.ruby-lang.org
 Cflags: -I${includedir}
-Libs: -L${libdir} ${LIBS} -lruby
+Libs: -L${libdir} ${LIBS} -l${RUBY_SO_NAME}
 Requires:
