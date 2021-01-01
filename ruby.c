@@ -360,7 +360,7 @@ add_modules(mod)
     req_list_last = list;
 }
 
-extern void Init_ext _((void));
+//extern void Init_ext _((void));
 
 static void
 require_libraries()
@@ -376,7 +376,7 @@ require_libraries()
     save[2] = NEW_NEWLINE(0);
     ruby_eval_tree = ruby_eval_tree_begin = 0;
     ruby_current_node = 0;
-    Init_ext();		/* should be called here for some reason :-( */
+    //Init_ext();		/* should be called here for some reason :-( */
     ruby_current_node = save[2];
     ruby_set_current_source();
     req_list_last = 0;

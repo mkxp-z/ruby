@@ -49,6 +49,7 @@ void Init_Time _((void));
 void Init_var_tables _((void));
 void Init_version _((void));
 void Init_st _((void));
+void Init_ext _((void));
 
 void
 rb_call_inits()
@@ -79,7 +80,6 @@ rb_call_inits()
     Init_Time();
     Init_Random();
     Init_signal();
-    Init_zlib();
     Init_process();
     Init_load();
     Init_Proc();
@@ -89,4 +89,6 @@ rb_call_inits()
     Init_Enumerator();
     Init_marshal();
     Init_version();
+
+    Init_ext();
 }
