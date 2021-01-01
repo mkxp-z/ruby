@@ -15,6 +15,8 @@
 
 #define CALL(n) {void Init_##n(void); Init_##n();}
 
+void Init_ext();
+
 void
 rb_call_inits(void)
 {
@@ -78,5 +80,7 @@ rb_call_inits(void)
     CALL(pack);
     CALL(warning);
     load_prelude();
+
+    CALL(ext);
 }
 #undef CALL

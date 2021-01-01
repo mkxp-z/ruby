@@ -1771,7 +1771,7 @@ process_options(int argc, char **argv, ruby_cmdline_options_t *opt)
             rb_ary_replace(vm->load_path_snapshot, load_path);
         }
     }
-    Init_ext();		/* load statically linked extensions before rubygems */
+    //Init_ext();		/* load statically linked extensions before rubygems */
     if (opt->features.set & FEATURE_BIT(gems)) {
 	rb_define_module("Gem");
         if (opt->features.set & FEATURE_BIT(did_you_mean)) {
