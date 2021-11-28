@@ -869,12 +869,17 @@ end
 
 # :startdoc:
 
+# This always causes problems when just trying to build
+# MKXP, and no one really needs them, so screw 'em
+
+=begin
 install?(:ext, :comm, :gem, :'default-gems', :'default-gems-comm') do
   install_default_gem('lib', srcdir)
 end
 install?(:ext, :arch, :gem, :'default-gems', :'default-gems-arch') do
   install_default_gem('ext', srcdir)
 end
+=end
 
 def load_gemspec(file, expanded = false)
   file = File.realpath(file)
