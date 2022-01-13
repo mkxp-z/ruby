@@ -847,6 +847,8 @@ rb_define_class(const char *name, VALUE super)
 		     name, rb_obj_class(klass));
 	}
 	if (rb_class_real(RCLASS_SUPER(klass)) != super) {
+        // edited for mkxp-z compatibility
+        goto override_class;
 	    rb_raise(rb_eTypeError, "superclass mismatch for class %s", name);
 	}
 
@@ -854,6 +856,7 @@ rb_define_class(const char *name, VALUE super)
         rb_vm_add_root_module(klass);
 	return klass;
     }
+override_class:
     if (!super) {
 	rb_raise(rb_eArgError, "no super class for `%s'", name);
     }
