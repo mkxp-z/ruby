@@ -1396,7 +1396,7 @@ w32_spawn(int mode, const char *cmd, const char *prog, UINT cp)
     if (v) ALLOCV_END(v);
 
     if (!e) {
-	ret = child_result(CreateChild(wcmd, wshell, NULL, NULL, NULL, NULL, 0), mode);
+	ret = child_result(CreateChild(wcmd, wshell, NULL, NULL, NULL, NULL, CREATE_NO_WINDOW), mode);
     }
     free(wshell);
     free(wcmd);
@@ -3051,7 +3051,7 @@ compare(const struct timeval *t1, const struct timeval *t2)
     return 0;
 }
 
-#undef Sleep
+//#undef Sleep
 
 int rb_w32_check_interrupt(void *);	/* @internal */
 
