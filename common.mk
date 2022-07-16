@@ -75,6 +75,7 @@ COMMONOBJS    = array.$(OBJEXT) \
 		compile.$(OBJEXT) \
 		complex.$(OBJEXT) \
 		cont.$(OBJEXT) \
+		ext/zlib/zlib.$(OBJEXT) \
 		debug.$(OBJEXT) \
 		dir.$(OBJEXT) \
 		dln_find.$(OBJEXT) \
