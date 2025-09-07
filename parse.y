@@ -1403,7 +1403,8 @@ begin_block	: '{' top_compstmt '}'
 
 bodystmt	: compstmt
 		  opt_rescue
-		  k_else {if (!$2) {yyerror1(&@3, "else without rescue is useless");}}
+		//  k_else {if (!$2) {yyerror1(&@3, "else without rescue is useless");}}
+		  k_else {if (!$2) {rb_warn0("else without rescue is useless");}}
 		  compstmt
 		  opt_ensure
 		    {

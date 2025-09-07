@@ -238,6 +238,7 @@ describe "The rescue keyword" do
     ScratchPad.recorded.should == [:one, :else_ran, :ensure_ran, :outside_begin]
   end
 
+if false
   it "raises SyntaxError when else is used without rescue and ensure" do
     -> {
       eval <<-ruby
@@ -249,6 +250,7 @@ describe "The rescue keyword" do
       ruby
     }.should raise_error(SyntaxError, /else without rescue is useless/)
   end
+end
 
   it "will not execute an else block if an exception was raised" do
     result = begin

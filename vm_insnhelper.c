@@ -4483,10 +4483,11 @@ vm_check_if_class(ID id, rb_num_t flags, VALUE super, VALUE klass)
 
     // edited for mkxp-z
     // makes some hackier forms of subclassing possible again
-	if (0) { //tmp != super) {
-	    rb_raise(rb_eTypeError,
-		     "superclass mismatch for class %"PRIsVALUE"",
-		     rb_id2str(id));
+	if (tmp != super) {
+	    return klass == 1 ? -1 : 1;
+	    //rb_raise(rb_eTypeError,
+		//     "superclass mismatch for class %"PRIsVALUE"",
+		//     rb_id2str(id));
 	}
 	else {
 	    return klass;
@@ -4566,11 +4567,18 @@ vm_define_class(ID id, rb_num_t flags, VALUE cbase, VALUE super)
     /* find klass */
     rb_autoload_load(cbase, id);
     if ((klass = vm_const_get_under(id, flags, cbase)) != 0) {
-        if (!vm_check_if_class(id, flags, super, klass))
+        // edited for mkxp-z
+        // makes some hackier forms of subclassing possible again
+        VALUE ret = vm_check_if_class(id, flags, super, klass);
+        if (!ret) {
             unmatched_redefinition("class", cbase, id, klass);
+        } else if (ret != klass) {
+            goto override_class;
+        }
         return klass;
     }
     else {
+override_class:
 	return vm_declare_class(id, flags, cbase, super);
     }
 }

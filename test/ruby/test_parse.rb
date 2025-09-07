@@ -16,6 +16,7 @@ class TestParse < Test::Unit::TestCase
     assert_syntax_error('------,,', /\n\z/, 'Message to pipe should end with a newline')
   end
 
+if false
   def test_else_without_rescue
     assert_syntax_error(<<-END, %r":#{__LINE__+2}: else without rescue"o, [__FILE__, __LINE__+1])
       begin
@@ -24,6 +25,7 @@ class TestParse < Test::Unit::TestCase
       end
     END
   end
+end
 
   def test_alias_backref
     assert_syntax_error("#{<<~"begin;"}\n#{<<~'end;'}", /can't make alias/) do
